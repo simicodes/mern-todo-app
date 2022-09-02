@@ -27,7 +27,7 @@ const Navbar = () => {
         <Toolbar>
           <Typography variant="h4" className={classes.root}>
             <Link className={classes.linkStyles} to="/">
-              ToDoApp;
+              ToDoApp:
             </Link>
           </Typography>
           <Typography variant="subtitle2" className={classes.root}>

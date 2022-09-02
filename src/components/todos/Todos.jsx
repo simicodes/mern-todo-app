@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddTodo from "./AddTodo";
+import ListTodos from "./ListTodos";
 
 const Todos = () => {
   return (
-    <div>Todos</div>
-  )
-}
+    <>
+      <AddTodo />
+      <ListTodos />
+    </>
+  );
+};
 
-export default Todos
+export default Todos;

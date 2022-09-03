@@ -18,14 +18,30 @@ export const getTodos = () => {
   };
 };
 
-export const addTodo = (todo) => {
+export const addTodo = (newTodo) => {
   return (dispatch, getState) => {
     // performing async action with axios
     axios
-      .post(`${url}/todos`, todo)
+      .post(`${url}/todos`, newTodo)
       .then((todo) => {
         dispatch({
           type: "ADD_TODO",
+          todo,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+};
+
+export const updateTodo = (updatedTodo, id) => {
+  return (dispatch) => {
+    // performing async action with axios
+    axios.put(`${url}/todos/${id}`, updatedTodo)
+      .then((todo) => {
+        dispatch({
+          type: "UPDATE_TODO",
           todo,
         });
       })

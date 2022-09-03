@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Todos from "./components/todos/Todos";
 import SignIn from "./components/auth/SignIn";
@@ -17,6 +19,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer />
         <Container maxWidth="md">
           <Navbar />
           <Container className={classes.contentStyle} maxWidth="sm">

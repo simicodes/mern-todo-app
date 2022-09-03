@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url } from "../../api";
+import { toast } from "react-toastify";
 
 export const getTodos = () => {
   return (dispatch) => {
@@ -7,7 +8,7 @@ export const getTodos = () => {
     axios
       .get(`${url}/todos`)
       .then((todos) => {
-        dispatch({ 
+        dispatch({
           type: "GET_TODOS",
           todos,
         });
@@ -31,6 +32,9 @@ export const addTodo = (newTodo) => {
       })
       .catch((error) => {
         console.log(error.response);
+        toast.error(error.response?.data, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
       });
   };
 };
@@ -38,7 +42,8 @@ export const addTodo = (newTodo) => {
 export const updateTodo = (updatedTodo, id) => {
   return (dispatch) => {
     // performing async action with axios
-    axios.put(`${url}/todos/${id}`, updatedTodo)
+    axios
+      .put(`${url}/todos/${id}`, updatedTodo)
       .then((todo) => {
         dispatch({
           type: "UPDATE_TODO",
@@ -47,6 +52,9 @@ export const updateTodo = (updatedTodo, id) => {
       })
       .catch((error) => {
         console.log(error.response);
+         toast.error(error.response?.data, {
+           position: toast.POSITION.BOTTOM_RIGHT,
+         });
       });
   };
 };

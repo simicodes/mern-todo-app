@@ -26,9 +26,13 @@ const ListTodos = () => {
   return (
     <>
       <div className={classes.todosStyles}>
-        <Typography variant="h5">The Todos:</Typography>
-        <Todo />
-        <Todo />
+        <Typography variant="h5">
+          {todos.length > 0 ? "The Todos:" : "No Todos Yet:"}
+        </Typography>
+        {todos &&
+          todos.map((todo) => {
+            return <Todo todo={todo} key={todo._id} />;
+          })}
       </div>
     </>
   );

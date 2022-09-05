@@ -31,7 +31,7 @@ export const signIn = (creds) => {
       .post(`${url}/signin`, creds)
       .then((token) => {
         localStorage.setItem("token", token.data);
- 
+
         dispatch({
           type: "SIGN_IN",
           token: token.data,
@@ -39,7 +39,7 @@ export const signIn = (creds) => {
       })
       .catch((error) => {
         console.log(error.response);
-        
+
         toast.error(error.response?.data, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
@@ -56,5 +56,13 @@ export const loadUser = () => {
         token,
       });
     } else return null;
+  };
+};
+
+export const signOut = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "SIGN_OUT",
+    });
   };
 };

@@ -4,7 +4,7 @@ import { Create, Delete, CheckCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { checkTodo } from "../../store/actions/todosActions";
+import { checkTodo, deleteTodo } from "../../store/actions/todosActions";
 
 const useStyles = makeStyles({
   todoStyle: {
@@ -43,6 +43,10 @@ const Todo = ({ todo, setTodo }) => {
   const handleCheck = (id) => {
     dispatch(checkTodo(id));
   };
+
+  const handleDeleteClick = (id) => {
+    dispatch(deleteTodo(id));
+  };
   return (
     <>
       <div className={classes.todoStyle}>
@@ -71,10 +75,10 @@ const Todo = ({ todo, setTodo }) => {
                 <CheckCircle color="action" />
               )}
             </Button>
-            <Button onClick={handleUpdateClick}>
+            <Button onClick={() => handleUpdateClick()}>
               <Create color="primary" />
             </Button>
-            <Button>
+            <Button onClick={() => handleDeleteClick(todo._id)}>
               <Delete color="secondary" />
             </Button>
           </ButtonGroup>

@@ -44,7 +44,7 @@ const SignUp = () => {
         className={classes.formStyles}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h5">signIn</Typography>
+        <Typography variant="h5">signUp</Typography>
         <TextField
           className={classes.spacing}
           id="enter-name"

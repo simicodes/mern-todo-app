@@ -1,12 +1,12 @@
 import axios from "axios";
-import { url } from "../../api";
+import { url, setHeaders } from "../../api";
 import { toast } from "react-toastify";
 
 export const getTodos = () => {
   return (dispatch) => {
     // performing async action with axios
     axios
-      .get(`${url}/todos`)
+      .get(`${url}/todos`, setHeaders())
       .then((todos) => {
         dispatch({
           type: "GET_TODOS",
@@ -21,9 +21,11 @@ export const getTodos = () => {
 
 export const addTodo = (newTodo) => {
   return (dispatch, getState) => {
+    const author = getState().auth.name;
+    const uid = getState().auth._id;
     // performing async action with axios
     axios
-      .post(`${url}/todos`, newTodo)
+      .post(`${url}/todos`, { ...newTodo, author, uid }, setHeaders())
       .then((todo) => {
         dispatch({
           type: "ADD_TODO",
@@ -43,7 +45,7 @@ export const updateTodo = (updatedTodo, id) => {
   return (dispatch) => {
     // performing async action with axios
     axios
-      .put(`${url}/todos/${id}`, updatedTodo)
+      .put(`${url}/todos/${id}`, updatedTodo, setHeaders())
       .then((todo) => {
         dispatch({
           type: "UPDATE_TODO",
@@ -63,7 +65,7 @@ export const checkTodo = (id) => {
   return (dispatch) => {
     // performing async action with axios
     axios
-      .patch(`${url}/todos/${id}`, {})
+      .patch(`${url}/todos/${id}`, {}, setHeaders())
       .then((todo) => {
         dispatch({
           type: "CHECK_TODO",
@@ -83,7 +85,7 @@ export const deleteTodo = (id) => {
   return (dispatch) => {
     // performing async action with axios
     axios
-      .delete(`${url}/todos/${id}`)
+      .delete(`${url}/todos/${id}`, setHeaders())
       .then(() => {
         dispatch({
           type: "DELETE_TODO",

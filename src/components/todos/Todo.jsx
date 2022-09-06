@@ -3,7 +3,7 @@ import { Typography, Button, ButtonGroup } from "@material-ui/core";
 import { Create, Delete, CheckCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkTodo, deleteTodo } from "../../store/actions/todosActions";
 
 const useStyles = makeStyles({
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 const Todo = ({ todo, setTodo }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+ const auth = useSelector((state) => state.auth);
   const handleUpdateClick = () => {
     setTodo(todo);
 
@@ -60,7 +60,7 @@ const Todo = ({ todo, setTodo }) => {
           )}
 
           <Typography className={classes.grayStyle} variant="body2">
-            Author: Simeon
+            Author: {auth.name}
           </Typography>
           <Typography className={classes.grayStyle} variant="body2">
             Added: {moment(todo.date).fromNow()}
